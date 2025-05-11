@@ -327,8 +327,8 @@
                     errorMessage.textContent = 'Username or Password is empty';
                     errorDiv.style.display = 'block';
                     return false;
-                } else if (uName.length < 4 || uPass.length < 4) {
-                    errorMessage.textContent = 'Min. 4 characters required';
+                } else if (uName.length < 3 || uPass.length < 3) {
+                    errorMessage.textContent = 'Min. 3 characters required';
                     errorDiv.style.display = 'block';
                     return false;
                 } else {
