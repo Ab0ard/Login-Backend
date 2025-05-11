@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html
-    lang="en"
-    style="background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%"
->
+<html lang="en" style="background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -24,149 +21,308 @@
             href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico"
             type="image/x-icon"
         />
-        <!-- include bootstrap and custom  css -->
-        <link
-            media="all"
-            rel="stylesheet"
-            href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/faq-main.css"
-        />
-        <!-- include custom  css -->
-        <link
-            media="all"
-            rel="stylesheet"
-            href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/shop-custom.css"
-        />
-        <link
-            media="all"
-            rel="stylesheet"
-            href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/ingame-custom.css"
-        />
+        
+        <!-- Include Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        
+        <!-- Include Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+        
+        <!-- Include custom CSS -->
+        <link media="all" rel="stylesheet" href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/faq-main.css" />
+        <link media="all" rel="stylesheet" href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/shop-custom.css" />
+        <link media="all" rel="stylesheet" href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/ingame-custom.css" />
+        
+        <!-- Include animate.css for animations -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+        
         <style>
-            .modal-backdrop {
-                background-color: rgba(0, 0, 0, 0.1);
+            :root {
+                --primary-color: #8c52ff;
+                --secondary-color: #5e17eb;
+                --accent-color: #f9c80e;
+                --text-color: #ffffff;
+                --bg-dark: #1a1a2e;
+                --card-bg: rgba(16, 18, 27, 0.8);
+                --input-bg: rgba(255, 255, 255, 0.08);
             }
-            .modal-backdrop + div {
-                overflow: auto;
+            
+            body {
+                background: linear-gradient(-45deg, #1a1a2e, #281c4d, #341948, #16213e);
+                background-size: 400% 400%;
+                animation: gradientBG 15s ease infinite;
+                height: 100vh;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                overflow: hidden;
             }
-            .modal-body,
-            .content {
-                padding: 0;
+            
+            @keyframes gradientBG {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+            
+            .floating {
+                animation: floating 3s ease-in-out infinite;
+            }
+            
+            @keyframes floating {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-15px); }
+                100% { transform: translateY(0px); }
+            }
+            
+            .modal-content {
+                background: var(--card-bg);
+                backdrop-filter: blur(10px);
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                color: var(--text-color);
+                overflow: hidden;
+            }
+            
+            .section-title h2 {
+                color: var(--text-color);
+                font-weight: 700;
+                margin-bottom: 30px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                text-shadow: 0 0 10px rgba(140, 82, 255, 0.5);
+                animation: glow 2s ease-in-out infinite alternate;
+            }
+            
+            @keyframes glow {
+                from { text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color); }
+                to { text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color); }
+            }
+            
+            .form-control {
+                background-color: var(--input-bg);
+                border: none;
+                border-radius: 10px;
+                color: var(--text-color);
+                padding: 15px 20px;
+                margin-bottom: 20px;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(5px);
+                box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
+            }
+            
+            .form-control:focus {
+                background-color: rgba(255, 255, 255, 0.15);
+                box-shadow: 0 0 15px var(--primary-color);
+                transform: scale(1.02);
+                color: white;
+            }
+            
+            .form-control::placeholder {
+                color: rgba(255, 255, 255, 0.6);
+            }
+            
+            .grow-button {
+                background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+                border: none;
+                border-radius: 10px;
+                color: white;
+                font-weight: 600;
+                letter-spacing: 1px;
+                padding: 12px 30px;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 20px rgba(94, 23, 235, 0.3);
+                text-transform: uppercase;
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+                width: 100%;
+            }
+            
+            .grow-button::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: 0.5s;
+                z-index: -1;
+            }
+            
+            .grow-button:hover::before {
+                left: 100%;
+                animation: shine 1.5s infinite;
+            }
+            
+            .grow-button:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 25px rgba(94, 23, 235, 0.4);
+            }
+            
+            @keyframes shine {
+                0% { left: -100%; }
+                100% { left: 100%; }
+            }
+            
+            .register-btn {
+                background: transparent;
+                border: 2px solid var(--accent-color);
+                color: var(--accent-color);
+                font-weight: 600;
+                margin-top: 15px;
+            }
+            
+            .register-btn:hover {
+                background-color: var(--accent-color);
+                color: var(--bg-dark);
+            }
+            
+            .input-group {
+                position: relative;
+                margin-bottom: 20px;
+            }
+            
+            .input-group i {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: rgba(255, 255, 255, 0.6);
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .input-group i:hover {
+                color: var(--accent-color);
+            }
+            
+            .particles {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+            }
+            
+            .logo-container {
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            
+            .logo {
+                max-width: 120px;
+                animation: pulse 2s infinite;
+            }
+            
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+                100% { transform: scale(1); }
+            }
+            
+            .input-icon {
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: rgba(255, 255, 255, 0.6);
+            }
+            
+            .icon-input {
+                padding-left: 45px;
+            }
+            
+            .error-message {
+                color: #ff6b6b;
+                background-color: rgba(255, 107, 107, 0.1);
+                border-radius: 5px;
+                padding: 10px;
+                margin-bottom: 15px;
+                font-size: 14px;
+                display: none;
+            }
+            
+            .success-message {
+                color: #51cf66;
+                background-color: rgba(81, 207, 102, 0.1);
+                border-radius: 5px;
+                padding: 10px;
+                margin-bottom: 15px;
+                font-size: 14px;
+                display: none;
             }
         </style>
     </head>
-    <body style="background-color: rgba(0, 0, 0, 0)">
-        <button
-            type="button"
-            class="btn btn-primary hidden"
-            data-toggle="modal"
-            id="modalButton"
-            data-target="#modalShow"
-            data-backdrop="static"
-            data-keyboard="false"
-        ></button>
+    <body>
+        <div id="particles-js" class="particles"></div>
+        
+        <button type="button" class="btn btn-primary hidden" data-bs-toggle="modal" id="modalButton" data-bs-target="#modalShow" data-bs-backdrop="static" data-bs-keyboard="false"></button>
+        
         <div class="content">
             <section class="common-box">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="row">
-                                <div
-                                    class="modal fade product-list-popup"
-                                    id="modalShow"
-                                    tabindex="-1"
-                                    role="dialog"
-                                    aria-hidden="false"
-                                >
-                                    <div
-                                        class="modal-dialog modal-dialog-centered"
-                                        role="document"
-                                    >
-                                        <div class="modal-content">
+                                <div class="modal fade" id="modalShow" tabindex="-1" role="dialog" aria-hidden="false">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content animate__animated animate__fadeIn">
                                             <div class="modal-body">
-                                                <div class="content">
+                                                <div class="content p-4">
                                                     <section class="common-box">
                                                         <div class="container">
-                                                            <div
-                                                                class="section-title center-align"
-                                                            >
-                                                                <h2>
-                                                                    Log Into
-                                                                 Your GTPSID
-                                                                </h2>
-
+                                                            <div class="logo-container">
+                                                                <img src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico" alt="Growtopia Logo" class="logo floating">
                                                             </div>
-                                                            <div
-                                                                class="row div-content-center"
-                                                            >
-                                                                <div
-                                                                    class="col-md-12 col-sm-12"
-                                                                >
-                                                                    <form
-                                                                        method="POST"
-                                                                        action="/player/growid/login/validate"
-                                                                        accept-charset="UTF-8"
-                                                                        class=""
-                                                                        role="form"
-                                                                        required="required"
-                                                                        autocomplete="off"
-                                                                    >
-                                                                        <input
-                                                                            name="_token"
-                                                                            type="hidden"
-                                                                            value="<%= data %>"
-                                                                        />
-<div
-                                                                            class="form-group"
-                                                                        >
-                                                                            <input
-                                                                                id="login-name"
-                                                                                class="form-control grow-text"
-                                                                                placeholder="Your GrowID Name *"
-                                                                                name="growId"
-                                                                                type="text"
-                                                                            />
-                                                                        </div>
-                                                                        <div
-                                                                            class="form-group"
-                                                                        >
-                                                                            <input
-                                                                                id="password"
-                                                                                class="form-control grow-text"
-                                                                                placeholder="Your GrowID Password *"
-                                                                                name="password"
-                                                                                type="password"
-                                                                                value=""
-                                                                            />
+                                                            
+                                                            <div class="section-title text-center animate__animated animate__fadeInDown">
+                                                                <h2>Log Into Your GTPSID</h2>
+                                                            </div>
+                                                            
+                                                            <div class="row div-content-center">
+                                                                <div class="col-md-12 col-sm-12">
+                                                                    <div id="errorDiv" class="error-message animate__animated animate__headShake">
+                                                                        <i class="fas fa-exclamation-circle me-2"></i>
+                                                                        <span id="errorMessage"></span>
+                                                                    </div>
+                                                                    
+                                                                    <div id="successDiv" class="success-message animate__animated animate__bounceIn">
+                                                                        <i class="fas fa-check-circle me-2"></i>
+                                                                        <span id="successMessage"></span>
+                                                                    </div>
+                                                                    
+                                                                    <form method="POST" action="/player/growid/login/validate" accept-charset="UTF-8" class="animate__animated animate__fadeInUp" role="form" required="required" autocomplete="off" id="loginForm">
+                                                                        <input name="_token" type="hidden" value="<%= data %>" />
+                                                                        
+                                                                        <div class="input-group">
+                                                                            <i class="fas fa-user input-icon"></i>
+                                                                            <input id="login-name" class="form-control icon-input" placeholder="Your GrowID Name *" name="growId" type="text" />
                                                                         </div>
                                                                         
-                                                                        <div
-                                                                            class="form-group text-center"
-                                                                        >
-                                                                       <input
-                                                                                class="btn btn-lg btn-primary grow-button"
-                                                        type="submit"
-                                                                                value="Login"
-                                                                            />
+                                                                        <div class="input-group">
+                                                                            <i class="fas fa-lock input-icon"></i>
+                                                                            <input id="password" class="form-control icon-input" placeholder="Your GrowID Password *" name="password" type="password" value="" />
+                                                                            <i class="fas fa-eye" id="togglePassword"></i>
                                                                         </div>
-                                                                                                   <div
-                                                                            class="form-group text-center"
-                                                                        >
-                                                                        </div>                                     </form>
-                                                                        <form
-                                                                        method="POST"
-                                                                        action="/player/growid/login/validate"
-                                                                        accept-charset="UTF-8"
-                                                                        class=""
-                                                                        role="form">
-<input name="_token" type="hidden" value=""/> <input name="growId" type="hidden" value=""/> <input name="password" type="hidden" value=""/>
-<input
-                                                                                class="btn btn-lg btn-primary grow-button"
-                                                        type="submit"
-                                                                                value="Don't have any GTPSID? Register here!"
-                                                                            />
-</form>
-                      
-                                                        </div>
+                                                                        
+                                                                        <div class="form-group text-center">
+                                                                            <button type="submit" class="btn grow-button animate__animated animate__pulse animate__infinite">
+                                                                                <i class="fas fa-sign-in-alt me-2"></i> Login
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                    
+                                                                    <form method="POST" action="/player/growid/login/validate" accept-charset="UTF-8" class="animate__animated animate__fadeInUp" role="form">
+                                                                        <input name="_token" type="hidden" value=""/> 
+                                                                        <input name="growId" type="hidden" value=""/> 
+                                                                        <input name="password" type="hidden" value=""/>
+                                                                        
+                                                                        <button type="submit" class="btn grow-button register-btn">
+                                                                            <i class="fas fa-user-plus me-2"></i> Don't have any GTPSID? Register here!
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </section>
@@ -181,115 +337,233 @@
                 </div>
             </section>
         </div>
-    </body>
-    <script src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/jquery/jquery-2.1.4.min.js"></script>
-    
-    <script src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/bootstrap/javascripts/bootstrap.min.js"></script>
-    <script>
-        let clicked = false;
-        $('a').click(function () {
-            if (clicked === false) {
-                clicked = true;
-                return true;
-            }
-            $(this).attr('onclick', 'return false;');
-        });
-        $('document').ready(function () {
-            document.onkeydown = e => {
-                if (e.key == 123) {
-                    e.preventDefault();
+        
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <!-- Particles.js for background animation -->
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        
+        <script>
+            let clicked = false;
+            $('a').click(function () {
+                if (clicked === false) {
+                    clicked = true;
+                    return true;
                 }
-                if (e.key == 'F12') {
-                    e.preventDefault();
-                }
-                if (e.ctrlKey && e.shiftKey && e.key == 'I') {
-                    e.preventDefault();
-                }
-                if (e.ctrlKey && e.key == 'I') {
-                    e.preventDefault();
-                }
-                if (e.ctrlKey && e.shiftKey && e.key == 'C') {
-                    e.preventDefault();
-                }
-                if (e.ctrlKey && e.shiftKey && e.key == 'J') {
-                    e.preventDefault();
-                }
-                if (e.ctrlKey && e.key == 'U') {
-                    e.preventDefault();
-                }
-            };
-            $('#modalButton').trigger('click');
-            $('.close').on('click', function () {
-                window.location = // change the host into your own backend host
-                    '/player/validate/close'; // https instead of http if u r using ssl
+                $(this).attr('onclick', 'return false;');
             });
-            // $('form').submit($('form .grow-button').attr('disabled', 'true'));
-            var observer = new MutationObserver(function (mutations) {
-                mutations.forEach(function (mutation) {
-                    for (var i = 0; i < mutation.addedNodes.length; i++) {
-                        if (mutation.addedNodes[i].tagName == 'DIV') {
-                            var thediv = mutation.addedNodes[i];
-                            var sw = window.screen.width;
-                            if (sw < 667) {
-                                $(thediv).css({
-                                    transform: 'scale(0.75)',
-                                    'transform-origin': '0 0',
-                                    '-webkit-transform': 'scale(0.75)',
-                                    '-webkit-transform-origin': '0 0',
-                                    overflow: 'auto',
-                                });
+            
+            $(document).ready(function () {
+                document.onkeydown = e => {
+                    if (e.key == 123) {
+                        e.preventDefault();
+                    }
+                    if (e.key == 'F12') {
+                        e.preventDefault();
+                    }
+                    if (e.ctrlKey && e.shiftKey && e.key == 'I') {
+                        e.preventDefault();
+                    }
+                    if (e.ctrlKey && e.key == 'I') {
+                        e.preventDefault();
+                    }
+                    if (e.ctrlKey && e.shiftKey && e.key == 'C') {
+                        e.preventDefault();
+                    }
+                    if (e.ctrlKey && e.shiftKey && e.key == 'J') {
+                        e.preventDefault();
+                    }
+                    if (e.ctrlKey && e.key == 'U') {
+                        e.preventDefault();
+                    }
+                };
+                
+                // Initialize particles.js
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 80,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": "#ffffff"
+                        },
+                        "shape": {
+                            "type": "circle",
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            },
+                            "polygon": {
+                                "nb_sides": 5
+                            }
+                        },
+                        "opacity": {
+                            "value": 0.5,
+                            "random": false,
+                            "anim": {
+                                "enable": false,
+                                "speed": 1,
+                                "opacity_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true,
+                            "anim": {
+                                "enable": false,
+                                "speed": 40,
+                                "size_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": "#8c52ff",
+                            "opacity": 0.4,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 2,
+                            "direction": "none",
+                            "random": false,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false,
+                            "attract": {
+                                "enable": false,
+                                "rotateX": 600,
+                                "rotateY": 1200
                             }
                         }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "grab"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },
+                        "modes": {
+                            "grab": {
+                                "distance": 140,
+                                "line_linked": {
+                                    "opacity": 1
+                                }
+                            },
+                            "bubble": {
+                                "distance": 400,
+                                "size": 40,
+                                "duration": 2,
+                                "opacity": 8,
+                                "speed": 3
+                            },
+                            "repulse": {
+                                "distance": 200,
+                                "duration": 0.4
+                            },
+                            "push": {
+                                "particles_nb": 4
+                            },
+                            "remove": {
+                                "particles_nb": 2
+                            }
+                        }
+                    },
+                    "retina_detect": true
+                });
+                
+                // Show modal on page load
+                $('#modalButton').trigger('click');
+                
+                // Handle close button
+                $('.close').on('click', function () {
+                    window.location = '/player/validate/close';
+                });
+                
+                // Toggle password visibility
+                $('#togglePassword').on('click', function() {
+                    const passwordField = $('#password');
+                    const passwordFieldType = passwordField.attr('type');
+                    if (passwordFieldType === 'password') {
+                        passwordField.attr('type', 'text');
+                        $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+                    } else {
+                        passwordField.attr('type', 'password');
+                        $(this).removeClass('fa-eye-slash').addClass('fa-eye');
                     }
                 });
+                
+                // Input animation
+                $('.form-control').on('focus', function() {
+                    $(this).parent().addClass('animate__animated animate__pulse');
+                }).on('blur', function() {
+                    $(this).parent().removeClass('animate__animated animate__pulse');
+                });
+                
+                // Form validation
+                $('#loginForm').on('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const uName = $('#login-name').val();
+                    const uPass = $('#password').val();
+                    
+                    // Reset error messages
+                    $('#errorDiv').hide();
+                    $('#successDiv').hide();
+                    
+                    if (!uName || !uPass) {
+                        $('#errorMessage').text('Username or Password is empty');
+                        $('#errorDiv').show().addClass('animate__animated animate__headShake');
+                        return false;
+                    } else if (uName.length < 4 || uPass.length < 4) {
+                        $('#errorMessage').text('Username or Password must be at least 4 characters long');
+                        $('#errorDiv').show().addClass('animate__animated animate__headShake');
+                        return false;
+                    } else {
+                        // Show success message with animation
+                        $('#successMessage').text('Logging in...');
+                        $('#successDiv').show().addClass('animate__animated animate__bounceIn');
+                        
+                        // Save GrowID to localStorage
+                        localStorage.setItem('growId', uName);
+                        
+                        // Submit the form after a short delay for animation
+                        setTimeout(() => {
+                            this.submit();
+                        }, 1000);
+                    }
+                });
+                
+                // Auto-fill GrowID if saved
+                if (localStorage.getItem('growId')) {
+                    $('#login-name').val(localStorage.getItem('growId'));
+                }
+                
+                // Random button shine effect
+                setInterval(function() {
+                    $('.grow-button:not(.register-btn)').addClass('animate__animated animate__flash');
+                    setTimeout(function() {
+                        $('.grow-button').removeClass('animate__animated animate__flash');
+                    }, 1000);
+                }, 5000);
             });
-            observer.observe(document.body, {
-                attributes: false,
-                childList: true,
-                characterData: false,
-            });
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            if (localStorage.getItem('growId')) {
-                document.getElementById('loginGrowId').value = localStorage.getItem('growId');
-            }
-
-            const loginGrowId = document.getElementById('loginGrowId').value
-            const loginPassword = document.getElementById('loginPassword').value
-        });
-        document.getElementById('loginButton').addEventListener('click', function (event) {
-            event.preventDefault();
-
-            const loginForm = document.getElementById('loginForm');
-            const uName = document.getElementById('loginGrowId').value;
-            const uPass = document.getElementById('loginPassword').value;
-
-            if (!uName || !uPass) {
-                document.getElementById('errorDiv').classList.remove('hidden');
-                document.getElementById('errorMessage').innerHTML = 'Username or Password is empty';
-                return;
-            } else if (uName.length < 4 || uPass.length < 4) {
-                document.getElementById('errorDiv').classList.remove('hidden');
-                document.getElementById('errorMessage').innerHTML = 'Username or Password must be at least 4 characters long';
-                return;
-            } else {
-                loginForm.submit();
-                localStorage.setItem('growId', document.getElementById('loginGrowId').value);
-            }
-        })
-        document.getElementById('toggleLogPassword').addEventListener('click', function () {
-            const LpasswordField = document.getElementById('loginPassword')
-            const LpasswordFieldType = LpasswordField.getAttribute('type');
-            if (LpasswordFieldType === 'password') {
-                LpasswordField.setAttribute('type', 'text');
-                this.innerHTML = '<i class="fas fa-eye-slash"></i>';
-            } else {
-                LpasswordField.setAttribute('type', 'password');
-                this.innerHTML = '<i class="fas fa-eye"></i>';
-            }
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
