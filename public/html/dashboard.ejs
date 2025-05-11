@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%">
+<html lang="en" style="width: 100%; height: 100%">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -28,11 +28,6 @@
         <!-- Include Font Awesome -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
         
-        <!-- Include custom CSS -->
-        <link media="all" rel="stylesheet" href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/faq-main.css" />
-        <link media="all" rel="stylesheet" href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/shop-custom.css" />
-        <link media="all" rel="stylesheet" href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/ingame-custom.css" />
-        
         <!-- Include animate.css for animations -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
         
@@ -54,6 +49,11 @@
                 height: 100vh;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 overflow: hidden;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
             
             @keyframes gradientBG {
@@ -72,14 +72,30 @@
                 100% { transform: translateY(0px); }
             }
             
-            .modal-content {
+            .login-card {
                 background: var(--card-bg);
                 backdrop-filter: blur(10px);
                 border-radius: 20px;
                 border: 1px solid rgba(255, 255, 255, 0.1);
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
                 color: var(--text-color);
-                overflow: hidden;
+                padding: 40px;
+                width: 90%;
+                max-width: 500px;
+                z-index: 10;
+                transform: translateY(0);
+                animation: fadeInUp 1s ease-out forwards;
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
             
             .section-title h2 {
@@ -257,115 +273,74 @@
     <body>
         <div id="particles-js" class="particles"></div>
         
-        <button type="button" class="btn btn-primary d-none" id="modalButton" data-bs-toggle="modal" data-bs-target="#modalShow"></button>
-        
-        <div class="modal fade" id="modalShow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content animate__animated animate__fadeIn">
-                    <div class="modal-body p-4">
-                        <section class="common-box">
-                            <div class="container">
-                                <div class="logo-container">
-                                    <img src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico" alt="Growtopia Logo" class="logo floating">
-                                </div>
-                                
-                                <div class="section-title text-center animate__animated animate__fadeInDown">
-                                    <h2>Log Into Your GTPSID</h2>
-                                </div>
-                                
-                                <div class="row div-content-center">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div id="errorDiv" class="error-message animate__animated animate__headShake">
-                                            <i class="fas fa-exclamation-circle me-2"></i>
-                                            <span id="errorMessage"></span>
-                                        </div>
-                                        
-                                        <div id="successDiv" class="success-message animate__animated animate__bounceIn">
-                                            <i class="fas fa-check-circle me-2"></i>
-                                            <span id="successMessage"></span>
-                                        </div>
-                                        
-                                        <form method="POST" action="/player/growid/login/validate" accept-charset="UTF-8" class="animate__animated animate__fadeInUp" role="form" required="required" autocomplete="off" id="loginForm">
-                                            <input name="_token" type="hidden" value="<%= data %>" />
-                                            
-                                            <div class="input-group">
-                                                <i class="fas fa-user input-icon"></i>
-                                                <input id="login-name" class="form-control icon-input" placeholder="Your GrowID Name *" name="growId" type="text" />
-                                            </div>
-                                            
-                                            <div class="input-group">
-                                                <i class="fas fa-lock input-icon"></i>
-                                                <input id="password" class="form-control icon-input" placeholder="Your GrowID Password *" name="password" type="password" value="" />
-                                                <i class="fas fa-eye" id="togglePassword"></i>
-                                            </div>
-                                            
-                                            <div class="form-group text-center">
-                                                <button type="submit" class="btn grow-button animate__animated animate__pulse animate__infinite">
-                                                    <i class="fas fa-sign-in-alt me-2"></i> Login
-                                                </button>
-                                            </div>
-                                        </form>
-                                        
-                                        <form method="POST" action="/player/growid/login/validate" accept-charset="UTF-8" class="animate__animated animate__fadeInUp" role="form">
-                                            <input name="_token" type="hidden" value=""/> 
-                                            <input name="growId" type="hidden" value=""/> 
-                                            <input name="password" type="hidden" value=""/>
-                                            
-                                            <button type="submit" class="btn grow-button register-btn">
-                                                <i class="fas fa-user-plus me-2"></i> Don't have any GTPSID? Register here!
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
+        <div class="login-card animate__animated animate__fadeIn">
+            <div class="logo-container">
+                <img src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico" alt="Growtopia Logo" class="logo floating">
             </div>
+            
+            <div class="section-title text-center animate__animated animate__fadeInDown">
+                <h2>Log Into Your GTPSID</h2>
+            </div>
+            
+            <div id="errorDiv" class="error-message animate__animated animate__headShake">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                <span id="errorMessage"></span>
+            </div>
+            
+            <div id="successDiv" class="success-message animate__animated animate__bounceIn">
+                <i class="fas fa-check-circle me-2"></i>
+                <span id="successMessage"></span>
+            </div>
+            
+            <form method="POST" action="/player/growid/login/validate" accept-charset="UTF-8" class="animate__animated animate__fadeInUp" role="form" required="required" autocomplete="off" id="loginForm">
+                <input name="_token" type="hidden" value="<%= data %>" />
+                
+                <div class="input-group">
+                    <i class="fas fa-user input-icon"></i>
+                    <input id="login-name" class="form-control icon-input" placeholder="Your GrowID Name *" name="growId" type="text" />
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input id="password" class="form-control icon-input" placeholder="Your GrowID Password *" name="password" type="password" value="" />
+                    <i class="fas fa-eye" id="togglePassword"></i>
+                </div>
+                
+                <div class="form-group text-center">
+                    <button type="submit" class="btn grow-button animate__animated animate__pulse animate__infinite">
+                        <i class="fas fa-sign-in-alt me-2"></i> Login
+                    </button>
+                </div>
+            </form>
+            
+            <form method="POST" action="/player/growid/login/validate" accept-charset="UTF-8" class="animate__animated animate__fadeInUp" role="form">
+                <input name="_token" type="hidden" value=""/> 
+                <input name="growId" type="hidden" value=""/> 
+                <input name="password" type="hidden" value=""/>
+                
+                <button type="submit" class="btn grow-button register-btn">
+                    <i class="fas fa-user-plus me-2"></i> Don't have any GTPSID? Register here!
+                </button>
+            </form>
         </div>
         
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        
         <!-- Particles.js for background animation -->
         <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
         
         <script>
-            let clicked = false;
-            $('a').click(function () {
-                if (clicked === false) {
-                    clicked = true;
-                    return true;
-                }
-                $(this).attr('onclick', 'return false;');
-            });
-            
             $(document).ready(function () {
+                // Prevent dev tools and keyboard shortcuts
                 document.onkeydown = e => {
-                    if (e.key == 123) {
-                        e.preventDefault();
-                    }
-                    if (e.key == 'F12') {
-                        e.preventDefault();
-                    }
-                    if (e.ctrlKey && e.shiftKey && e.key == 'I') {
-                        e.preventDefault();
-                    }
-                    if (e.ctrlKey && e.key == 'I') {
-                        e.preventDefault();
-                    }
-                    if (e.ctrlKey && e.shiftKey && e.key == 'C') {
-                        e.preventDefault();
-                    }
-                    if (e.ctrlKey && e.shiftKey && e.key == 'J') {
-                        e.preventDefault();
-                    }
-                    if (e.ctrlKey && e.key == 'U') {
-                        e.preventDefault();
-                    }
+                    if (e.key == 123) e.preventDefault();
+                    if (e.key == 'F12') e.preventDefault();
+                    if (e.ctrlKey && e.shiftKey && e.key == 'I') e.preventDefault();
+                    if (e.ctrlKey && e.key == 'I') e.preventDefault();
+                    if (e.ctrlKey && e.shiftKey && e.key == 'C') e.preventDefault();
+                    if (e.ctrlKey && e.shiftKey && e.key == 'J') e.preventDefault();
+                    if (e.ctrlKey && e.key == 'U') e.preventDefault();
                 };
                 
                 // Initialize particles.js
@@ -473,18 +448,6 @@
                         }
                     },
                     "retina_detect": true
-                });
-                
-                // Show modal on page load - Bootstrap 5 version
-                var myModal = new bootstrap.Modal(document.getElementById('modalShow'), {
-                    backdrop: 'static',
-                    keyboard: false
-                });
-                myModal.show();
-                
-                // Handle close button
-                $('.close').on('click', function () {
-                    window.location = '/player/validate/close';
                 });
                 
                 // Toggle password visibility
